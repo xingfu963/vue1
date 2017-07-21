@@ -1,0 +1,19 @@
+<div class="row panel panel-default" ng-controller="productsCtrl">
+	<div class="col-md-3">
+		<button class="btn btn-block btn-default btn-lg" ng-click="findCategory('全部')" ng-class="classOfSelectedCategory('全部')">全部</button>
+		<!-- <button class="btn btn-block btn-default btn-lg" ng-repeat="category in norepeat">{{category}}</button> -->
+		<button class="btn btn-block btn-default btn-lg" ng-repeat="category in products|unique" ng-click="findCategory(category)" ng-class="classOfSelectedCategory(category)">{{category}}</button>
+	</div>
+	<div class="col-md-9">
+		<!-- <div class="well" ng-repeat="product in categoryProducts||products"> -->
+		<!-- <div class="well" ng-repeat="product in pageProducts||findCategory('全部')"> -->
+		<div class="well" ng-repeat="product in pageProducts">
+			<h3>{{product.name}}<span class="pull-right label label-primary">{{product.price|currency:"¥ "}}</span></h3>
+			<span class="lead">{{product.description}}</span>
+			<button class="btn btn-success pull-right" ng-click="addToCart(product)">加入购物车</button>
+		</div>
+		<div class="pull-right btn-group">
+			<button class="btn btn-default" ng-repeat="page in pages(3)" ng-click="productsPerPage(page,3)" ng-class="classOfSelectedBtnNum(page)">{{page}}</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,30 @@
+<div ng-controller="checkoutCtrl">
+	<h2>你的购物清单</h2>
+	<div class="alert alert-warning" ng-show="result.length==0">
+		这里没有商品<a href="#/products">点击这里返回购物</a>
+	</div>
+	<!-- <table class="table table-striped" ng-show="result.length!=0"> -->
+	<!-- ng-show="bol" ng-hide="bol" 控制标签隐藏和显示,=号后面是布尔值 -->
+	<table class="table table-striped" ng-hide="result.length==0">
+		<heade>
+			<tr>
+				<th>商品名称</th>
+				<th class="text-right">单价</th>
+				<th class="text-center">数量</th>
+				<th class="text-center">小计</th>
+				<th class="text-center">删除</th>
+			</tr>
+		</heade>
+		<tbody>
+			<tr ng-repeat="product in result">
+				<td>{{product.name}}</td>
+				<td class="text-right">{{product.price|currency:"¥"}}</td>
+				<td class="text-center">{{product.count}}</td>
+				<td class="text-center">{{product.price * product.count|currency:"¥"}}</td>
+				<td class="text-center">
+					<button class="btn btn-danger" ng-click="delete(product)">删除</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
